@@ -1,10 +1,23 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <h1>Counter: {{$store.state.counter}}</h1>
+    <button @click="$store.state.counter++">+</button>
+    <button @click="$store.state.counter--">-</button>
   </div>
-  <router-view />
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import store from "./store";
+
+export default defineComponent({
+  computed: {
+    counter() {
+      return store.state.counter;
+    },
+  },
+});
+</script>
 
 <style lang="scss">
 #app {
