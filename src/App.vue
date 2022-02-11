@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Counter: {{$store.state.counter}}</h1>
+    <h1>doubleCounter: {{doubleCounter}}</h1>
     <button @click="$store.state.counter++">+</button>
     <button @click="$store.state.counter--">-</button>
   </div>
@@ -8,13 +9,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import store from "./store";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   computed: {
-    counter() {
-      return store.state.counter;
-    },
+    ...mapGetters(["doubleCounter"]),
   },
 });
 </script>
