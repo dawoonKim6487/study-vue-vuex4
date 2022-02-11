@@ -2,18 +2,29 @@
   <div>
     <h1>Counter: {{$store.state.counter}}</h1>
     <h1>doubleCounter: {{doubleCounter}}</h1>
-    <button @click="$store.state.counter++">+</button>
+    <button @click="addCounter">+</button>
     <button @click="$store.state.counter--">-</button>
+
+    <button @click="addCounterPayLoad">payload:5</button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
+import store from "./store";
 
 export default defineComponent({
   computed: {
     ...mapGetters(["doubleCounter"]),
+  },
+  methods: {
+    addCounter() {
+      store.commit("addCounter");
+    },
+    addCounterPayLoad() {
+      store.commit("addCounterPayLoad", { value: 5 });
+    },
   },
 });
 </script>

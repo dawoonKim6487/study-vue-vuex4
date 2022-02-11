@@ -9,7 +9,14 @@ export default createStore({
       return state.counter * 2;
     }
   },
-  mutations: {},
+  mutations: {
+    addCounter(state) {
+      state.counter++
+    },
+    addCounterPayLoad(state, payload) {
+      state.counter = payload.value
+    },
+  },
   actions: {},
   modules: {},
 });
