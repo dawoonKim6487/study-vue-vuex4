@@ -16,7 +16,15 @@ export default createStore({
     addCounterPayLoad(state, payload) {
       state.counter = payload.value
     },
+
   },
-  actions: {},
+  actions: {
+    ADDCOUNT({ commit }) {
+      commit('addCounter')
+    },
+    ADDCOUNTPALOAD({ commit }, payload) {
+      commit('addCounterPayLoad', { value: payload })
+    }
+  },
   modules: {},
 });

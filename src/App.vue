@@ -5,7 +5,7 @@
     <button @click="addCounter">+</button>
     <button @click="$store.state.counter--">-</button>
 
-    <button @click="addCounterPayLoad">payload:5</button>
+    <button @click="addCounterPayloadAction">payload:5</button>
   </div>
 </template>
 
@@ -24,6 +24,12 @@ export default defineComponent({
     },
     addCounterPayLoad() {
       store.commit("addCounterPayLoad", { value: 5 });
+    },
+    addCounterAction() {
+      store.dispatch("ADDCOUNT");
+    },
+    addCounterPayloadAction() {
+      store.dispatch("ADDCOUNTPALOAD", 3);
     },
   },
 });
