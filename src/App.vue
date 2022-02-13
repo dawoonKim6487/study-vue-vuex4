@@ -1,59 +1,27 @@
 <template>
-  <div>
-    <h1>Counter: {{$store.state.counter}}</h1>
-    <h1>doubleCounter: {{doubleCounter}}</h1>
-    <button @click="addCounter">+</button>
-    <button @click="$store.state.counter--">-</button>
-
-    <button @click="addCounterPayloadAction">payload:5</button>
-  </div>
+  <div>{{userIdGetters}}</div>
+  <ul>
+    <li v-for="(board,index) in boardList" :key="index">{{board.tit}} - {{board.desc}}</li>
+  </ul>
+  <button @click="login">로그인</button>
+  <button @click="boardUpdate">보드 업데이트</button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
 import store from "./store";
-
 export default defineComponent({
   computed: {
-    ...mapGetters(["doubleCounter"]),
+    ...mapGetters(["userIdGetters", "boardList"]),
   },
   methods: {
-    addCounter() {
-      store.commit("addCounter");
+    login() {
+      store.dispatch("login", { userName: "다운", userId: "다운1" });
     },
-    addCounterPayLoad() {
-      store.commit("addCounterPayLoad", { value: 5 });
-    },
-    addCounterAction() {
-      store.dispatch("ADDCOUNT");
-    },
-    addCounterPayloadAction() {
-      store.dispatch("ADDCOUNTPALOAD", 3);
+    boardUpdate() {
+      store.dispatch("boardUpdate", { tit: "1", desc: "123" });
     },
   },
 });
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>

@@ -1,30 +1,17 @@
 import { createStore } from "vuex";
+import { userInfoType } from "./autho/autho.type"
+import { boardType } from './board/board.type';
+import { ModuleUserInfo } from './autho'
+import { ModuleBoard } from './board/index'
+
+export interface RootState {
+  ModuleUserInfo: userInfoType;
+  ModuleBoard: boardType;
+}
 
 export default createStore({
-  state: {
-    counter: 0,
-  },
-  getters: {
-    doubleCounter(state) {
-      return state.counter * 2;
-    }
-  },
-  mutations: {
-    addCounter(state) {
-      state.counter++
-    },
-    addCounterPayLoad(state, payload) {
-      state.counter = payload.value
-    },
 
+  modules: {
+    ModuleUserInfo, ModuleBoard
   },
-  actions: {
-    ADDCOUNT({ commit }) {
-      commit('addCounter')
-    },
-    ADDCOUNTPALOAD({ commit }, payload) {
-      commit('addCounterPayLoad', { value: payload })
-    }
-  },
-  modules: {},
 });
